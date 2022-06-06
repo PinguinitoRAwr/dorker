@@ -21,27 +21,27 @@ void main() {
     Concater(Dorker.CrossLink(_concatSharedDorker));
   }
 
-  var input = querySelector('#input') as TextInputElement;
+  var input = querySelector('#input') as TextInputElement?;
   var concatButton = querySelector('#btConcat') as ButtonElement;
   var sharedConcatButton = querySelector('#btSharedConcat') as ButtonElement;
 
   concatButton.onClick.listen((_) {
-    _concatDorker.postMessage.add(input.value);
+    _concatDorker.postMessage.add({'value':input!.value});
     input.text = "";
   });
 
   sharedConcatButton.onClick.listen((_) {
-    _concatSharedDorker.postMessage.add(input.value);
+    _concatSharedDorker.postMessage.add({'value':input!.value});
     input.text = "";
   });
 
   _concatDorker.onMessage.listen((data) {
-    querySelector('#output').text = 'Concated: $data';
+    querySelector('#output')!.text = 'Concated: $data';
   });
 
   _concatSharedDorker.onMessage.listen((data) {
-    querySelector('#sharedOutput').text = 'Shared Concated: $data';
+    querySelector('#sharedOutput')!.text = 'Shared Concated: $data';
   });
 
-  querySelector('#output').text = 'Use the input and button.';
+  querySelector('#output')!.text = 'Use the input and button.';
 }

@@ -4,8 +4,8 @@ import 'dorker_base.dart';
 
 class Request {
   final String command;
-  final dynamic params;
-  final String trackingId;
+  final Object? params;
+  final String? trackingId;
 
   Request(this.command, {this.params, this.trackingId});
 
@@ -25,14 +25,14 @@ class Request {
 }
 
 class Respond {
-  final String command;
+  final String? command;
   final bool isError;
   final bool isEvent;
-  final dynamic params;
-  final String trackingId;
+  final Object? params;
+  final String? trackingId;
 
   Respond(this.command,
-      {this.isError, this.isEvent, this.params, this.trackingId});
+      {required this.isError,required this.isEvent, this.params, this.trackingId});
 
   factory Respond.to(Request request, {dynamic params}) {
     return Respond(request.command,

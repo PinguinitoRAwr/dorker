@@ -24,11 +24,11 @@ class Dorker<T> {
   ///
   /// It is especially useful to run a Dart Web App in `webdev serve` but retain most
   /// of the logic working with Web Worker.
-  Dorker.CrossLink(Dorker rekrod) {
+  Dorker.CrossLink(Dorker<T> rekrod) {
     crossLink(rekrod);
   }
 
-  void crossLink(Dorker rekrod) {
+  void crossLink(Dorker<T> rekrod) {
     rekrod.outgoing.stream.listen(incoming.add);
     outgoing.stream.listen(rekrod.incoming.add);
   }

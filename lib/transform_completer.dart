@@ -4,7 +4,7 @@ typedef T Transform<T>(dynamic data);
 
 class TransformCompleter<T> {
   final _completer = Completer<T>();
-  final Transform<T> _transform;
+  final Transform<T>? _transform;
 
   TransformCompleter([this._transform]);
 

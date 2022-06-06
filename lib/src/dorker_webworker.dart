@@ -105,7 +105,7 @@ class DorkerWorker<T> extends Dorker<T> {
   Worker _worker;
 
   DorkerWorker(this._worker) {
-    _worker.onMessage.map((event) => event.data).listen(incoming.add);
+    _worker.onMessage.map((event) => event.data as T).listen(incoming.add);
     outgoing.stream.listen(_worker.postMessage);
   }
 
@@ -126,13 +126,13 @@ class DorkerSharedWorker<T> extends Dorker<T> {
   SharedWorker _worker;
 
   DorkerSharedWorker(this._worker) {
-    _worker.port.onMessage.map((event) => event.data).listen(incoming.add);
-    outgoing.stream.listen(_worker.port.postMessage);
+    _worker.port?.onMessage.map((event) => event.data as T).listen(incoming.add);
+    outgoing.stream.listen(_worker.port?.postMessage);
   }
 
   @override
   void dispose() {
-    _worker.port.close();
+    _worker.port?.close();
     super.dispose();
   }
 }
